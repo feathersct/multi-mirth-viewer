@@ -1,0 +1,102 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>Mirth Version: <b>{{ mirthVersion }}</b></p>
+                <p>JVM: <b>{{ jvmVersion }} ({{ systemInfo.jvmVersion }})</b></p>
+                <p>Operating System: <b>{{ systemInfo.osName }} (v{{ systemInfo.osVersion }}) ({{ systemInfo.osArchitecture }})</b></p>
+                <p>Database: <b>{{ systemInfo.dbName }} ({{ systemInfo.dbVersion }})</b></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">System Stats</div>
+            <div class="panel-body">
+                <p>CPU: <b>{{ (systemStats.cpuUsagePct).toPrecision(4) }}%</b></p>
+                <p>Memory: <b>{{ (((systemStats.allocatedMemoryBytes - systemStats.freeMemoryBytes) / systemStats.allocatedMemoryBytes)*100).toPrecision(4) }}%</b></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" (aria-valuenow)="((systemStats.allocatedMemoryBytes - systemStats.freeMemoryBytes) / systemStats.allocatedMemoryBytes)*100" aria-valuemin="0" aria-valuemax="100" [style]="'width: ' + ((systemStats.maxMemoryBytes - systemStats.freeMemoryBytes) / systemStats.maxMemoryBytes)*100 + '%;'">
+                        <span class="sr-only">{{((systemStats.allocatedMemoryBytes - systemStats.freeMemoryBytes) / systemStats.allocatedMemoryBytes)*100}}% Complete</span>
+                    </div>
+                </div>
+                <p>Storage: <b>{{ (((systemStats.diskTotalBytes - systemStats.diskFreeBytes) / systemStats.diskTotalBytes)*100).toPrecision(4) }}%</b></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" (aria-valuenow)="((systemStats.diskTotalBytes - systemStats.diskFreeBytes) / systemStats.diskTotalBytes)*100" aria-valuemin="0" aria-valuemax="100" [style]="'width: ' + ((systemStats.diskTotalBytes - systemStats.diskFreeBytes) / systemStats.diskTotalBytes)*100 + '%;'">
+                        <span class="sr-only">{{((systemStats.diskTotalBytes - systemStats.diskFreeBytes) / systemStats.diskTotalBytes)*100}}% Complete</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Server Settings</div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>General Settings</h4>
+                        <p>Environment Name: <b>{{ serverSettings.environmentName }}</b></p>
+                        <p>Server Name: <b>{{ serverSettings.serverName }}</b></p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>Channel Settings</h4>
+                        <p>Clear Global Map on Redeploy: <b>{{ serverSettings.clearGlobalMap }}</b></p>
+                        <p>Default Metadata Columns: <b>{{ serverSettings.defaultMetaDataColumns }}</b></p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>Email Settings</h4>
+                        <p>SMTP Host: <b>{{ serverSettings.smtpHost }}</b></p>
+                        <p>SMTP Port: <b>{{ serverSettings.smtpPort }}</b></p>
+                        <p>Send Timeout: <b>{{ serverSettings.smtpTimeout }}</b></p>
+                        <p>Default From Address: <b>{{ serverSettings.smtpFrom }}</b></p>
+                        <p>Username: <b>{{ serverSettings.smtpUsername }}</b></p>
+                        <p>Password: <b>{{ serverSettings.smtpPassword }}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">Data Pruner Settings</div>
+            <div class="panel-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>Schedule</h4>
+                        <p>Enabled: <b>{{ dataPrunerSettings.enabled }}</b></p>
+                        <p>Schedule Type: <b></b></p>
+                        <p>Interval: <b></b></p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>Prune Settings</h4>
+                        <p>Block Size: <b>{{ dataPrunerSettings.pruningBlockSize }}</b></p>
+                        <p>Prune Events: <b>{{ dataPrunerSettings.pruneEvents }}</b></p>
+                        <p>Prune Event Age: <b>{{ dataPrunerSettings.maxEventAge }}days</b></p>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>Archive Settings</h4>
+                        <p>Enable Archiving: <b>{{ dataPrunerSettings.archiveEnabled }}</b></p>
+                        <p>Archiver Block Size: <b>{{ dataPrunerSettings.archiverBlockSize }}</b></p>
+                        <p>Content: <b></b></p>
+                        <p>Password Protect: <b></b></p>
+                        <p>Root Path: <b></b></p>
+                        <p>File Pattern: <b></b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

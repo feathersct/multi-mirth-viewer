@@ -1,0 +1,10 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let instance of instances">
+        <a class="nav-link" (click)="onSelect(instance)">{{ instance }}</a>
+    </li>
+</ul>
+<div class="row">
+    <div class="col-xs-12">
+        <app-settings [instance]="selectedInstance"></app-settings>
+    </div>
+</div>
